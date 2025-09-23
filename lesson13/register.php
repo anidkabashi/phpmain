@@ -16,8 +16,8 @@
         }
 
         else{
-            $sql ="SELECT username FROM user Where username=:username";
-            $tempSQL->bindParam(':username,' $username);
+            $sql ="SELECT username FROM users Where username=:username";
+            $tempSQL->bindParam(':username', $username);
             $tempSQL->execute();
 
             if($tempSQL->rowCount() > 0)
@@ -28,15 +28,15 @@
             else
             {
                 $sql = "insert into users (name, surname, username, email, password) values (:name, :surname, :username, :email, :password)"
-                $insertsSQL+$conn->prepare($sql);
+                $insertSQL=$conn->prepare($sql);
 
-                $insertsSQL->bindParam(':name', $name);
-                $insertsSQL->bindParam(':surname', $surname);
-                $insertsSQL->bindParam(':username', $username);
-                $insertsSQL->bindParam(':email', $email);
-                $insertsSQL->bindParam(':password', $password);
+                $insertSQL->bindParam(':name', $name);
+                $insertSQL->bindParam(':surname', $surname);
+                $insertSQL->bindParam(':username', $username);
+                $insertSQL->bindParam(':email', $email);
+                $insertSQL->bindParam(':password', $password);
 
-                $insertsSQL->execute();
+                $insertSQL->execute();
 
                 echo "Data saved successfully";
                 
