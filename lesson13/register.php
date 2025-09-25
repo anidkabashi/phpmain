@@ -1,47 +1,52 @@
 <?php
-    include_once('config.php');
+	include_once('config.php');	
 
-    if(isset($_POST['submit']))
-    {
-        $name = $_POST['name'];
-        $surname = $_POST['surname'];
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $temPass = $_POST['password'];
-        $password = password_hash($temPass, PASSWORD_DEFAULT);
+	if(isset($_POST['submit']))
+	{
+		$name = $_POST['name'];
+		$surname = $_POST['surname'];
+		$username = $_POST['username'];
+		$email = $_POST['email'];
+		$tempPass = $_POST['password'];  // Password input from the form
+		
+		// Don't hash the password; use it as is
+		$password = $tempPass;
 
-        if(empty($name) || empty($surname) || empty($username) || empty($email) || empty($password))
-        {
-            echo "you need to fill all te fields";
-        }
+		// Check if any field is empty
+		if(empty($name) || empty($surname) || empty($username) || empty($email) || empty($tempPass))
+		{
+			echo "You need to fill all the fields.";
+		}
+		else
+		{
+			// Check if the username already exists
+			$sql = "SELECT username FROM users WHERE username=:username";
+			$tempSQL = $conn->prepare($sql);
+			$tempSQL->bindParam(':username', $username);
+			$tempSQL->execute();
 
-        else{
-            $sql ="SELECT username FROM users Where username=:username";
-            $tempSQL->bindParam(':username', $username);
-            $tempSQL->execute();
+			if($tempSQL->rowCount() > 0)
+			{
+				echo "Username exists!";
+				header("refresh:2; url=signup.php"); 
+			}
+			else
+			{
+				// Insert new user into the database with plain password
+				$sql = "INSERT INTO users (name, surname, username, email, password) VALUES (:name, :surname, :username, :email, :password)";
+				$insertSql = $conn->prepare($sql);
 
-            if($tempSQL->rowCount() > 0)
-            {
-                echo "Username exists!";
-                header ("refresh:2; url=signup.php");
-            }
-            else
-            {
-                $sql = "insert into users (name, surname, username, email, password) values (:name, :surname, :username, :email, :password)"
-                $insertSQL=$conn->prepare($sql);
+				$insertSql->bindParam(':name', $name); 
+				$insertSql->bindParam(':surname', $surname); 
+				$insertSql->bindParam(':username', $username);
+				$insertSql->bindParam(':email', $email);
+				$insertSql->bindParam(':password', $password); // Insert plain text password
 
-                $insertSQL->bindParam(':name', $name);
-                $insertSQL->bindParam(':surname', $surname);
-                $insertSQL->bindParam(':username', $username);
-                $insertSQL->bindParam(':email', $email);
-                $insertSQL->bindParam(':password', $password);
+				$insertSql->execute();
 
-                $insertSQL->execute();
-
-                echo "Data saved successfully";
-                
-                header ("refresh:2; url=login.php");
-            }
-        }
-    }
+				echo "Data saved successfully ...";
+				header("refresh:2; url=login.php"); 
+			}
+		}
+	}
 ?>

@@ -1,53 +1,25 @@
-<DOCTYPE html>
-    <html>
-        <head>
-            <?php include("header.php"); ?>
-</head>
-<body>
-<main class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
-        <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
-            <form action="loginLogic.php" method="post" class="form-signin">
-                <h2 class="mb-4 text-center">Sign In to Digital School</h2>
+<?php include("header.php"); ?>
+	
+	<div class="login">
+
+		<form class="form-signin" action="loginLogic.php" method="post">
+		
+			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+			<label for="inputEmail" class="sr-only">Username</label>
+			<input type="text" id="inputEmail" class="form-control" placeholder="Username" name="username" required autofocus>
+
+			<label for="inputPassword" class="sr-only">Password</label>
+			<input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
 
 
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        name="username" 
-                        class="form-control" 
-                        placeholder="Enter your username" 
-                        required 
-                        autofocus>
-                </div>
-                  <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        class="form-control" 
-                        placeholder="Enter your password" 
-                        required>
-                </div>
-                  <button class="btn btn-primary w-100" type="submit" name="submit">Sign In</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Sign in</button>
+			
+			<small>Don't have account ? <a href="signup.php">Sign Up</a></small>
 
+			<p class="mt-5 mb-3 text-muted">Digital School  &copy; 2023</p>
+		</form>
 
-                <div class="text-center mt-3">
-                    <small>
-                        Don't have an account? <a href="signup.php">Sign Up</a>
-                    </small>
-                </div>
+	</div>
 
-
-                <p class="text-center text-muted mt-4 mb-0">&copy; 2023 Digital School</p>
-            </form>
-        </div>
-    </main>
-
-
-
-    <?php include("footer.php"); ?>
-        </body>
-    </html>
+<?php include("footer.php"); ?>

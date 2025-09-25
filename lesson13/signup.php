@@ -1,76 +1,33 @@
-<DOCTYPE html>
-    <html>
-        <head>
-            <?php include("header.php"); ?>
-</head>
-<body>
+<?php include("header.php"); ?>
 
- <main class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
-        <div class="card shadow-sm p-4" style="max-width: 500px; width: 100%;">
-            <form action="register.php" method="post" class="form-signin">
-                <h2 class="mb-4 text-center">Create an Account</h2>
+<div class="signup">
+		
+	<form class="form-signin" action="register.php" method="post">
+		
+		<h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
 
+		<label for="inputEmail" class="sr-only">Name</label>
+		<input type="text" id="inputEmail" class="form-control" placeholder="Name" name="name" required autofocus>
 
-                <div class="mb-3">
-                    <label for="name" class="form-label">First Name</label>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        class="form-control" 
-                        placeholder="Enter your first name" 
-                        required 
-                        autofocus>
-                </div>
-                <div class="mb-3">
-                    <label for="surname" class="form-label">Last Name</label>
-                    <input 
-                        type="text" 
-                        id="surname" 
-                        name="surname" 
-                        class="form-control" 
-                        placeholder="Enter your last name" 
-                        required>
-                </div>
+		<label for="inputEmail" class="sr-only">Surname</label>
+		<input type="text" id="inputEmail" class="form-control" placeholder="Surname" name="surname" required autofocus>
 
+		<label for="inputEmail" class="sr-only">Username</label>
+		<input type="text" id="inputEmail" class="form-control" placeholder="Username" name="username" required autofocus>
+		
 
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        name="username" 
-                        class="form-control" 
-                        placeholder="Choose a username" 
-                        required>
-                </div>
-                <button class="btn btn-primary w-100" type="submit" name="submit">Sign Up</button>
+		<label for="inputEmail" class="sr-only">Email</label>
+		<input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required autofocus>
 
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
 
-                <div class="text-center mt-3">
-                    <small>Already have an account? <a href="login.php">Log In</a></small>
-                </div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Sign up</button>
 
+		<small>Already have account? <a href="login.php">Log In</a></small>
 
-                <p class="text-center text-muted mt-4 mb-0">&copy; 2023 Digital School</p>
-            </form>
-        </div>
-    </main>
-    <button class="btn btn-primary w-100" type="submit" name="submit">Sign Up</button>
+		<p class="mt-5 mb-3 text-muted">Digital School &copy; 2023</p>
+	</form>
+</div>
 
-
-                <div class="text-center mt-3">
-                    <small>Already have an account? <a href="login.php">Log In</a></small>
-                </div>
-
-
-                <p class="text-center text-muted mt-4 mb-0">&copy; 2023 Digital School</p>
-            </form>
-        </div>
-    </main>
-                
-
-
-    <?php include("footer.php"); ?>
-        </body>
-    </html>
+<?php include("footer.php"); ?>
