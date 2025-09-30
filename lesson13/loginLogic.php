@@ -1,7 +1,6 @@
 <?php 
-
-include_once('config.php');	
-
+session_start();
+require 'config.php';
 
 if(isset($_POST['submit']))
 {

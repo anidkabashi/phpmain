@@ -1,7 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-    <body>
-        <script scr="js/jquery.js"></script>
-        <script scr="js/bootstrap.js"></script>
-    </body>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+</body>
 </html>
