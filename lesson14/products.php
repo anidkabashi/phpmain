@@ -15,7 +15,31 @@
 		}
 		else
 		{
+			$sql = "SELECT title FROM products WHERE title=;title";
 			
+			$tempSQl = $conn->perpare($sql);
+			$tempSQl->bindPrama(':title', $title);
+			$tempSQl->execute();
+
+			if($tempSQl->rowCount() > 0)
+			{
+				echo "Title exists!";
+				header( "refresh:2; url=addProducts.php");
+			}
+			else
+			{
+				$sql = "insert into products (title,description, quantity, price) values (:title, :description, :quantity, :price)";
+				$insertSQL->bindPrama(':title', $title);
+				$insertSQL->bindPrama(':description', $description);
+				$insertSQL->bindPrama(':quantity', $quantity);
+				$newprice=$price*100;
+				$insertSQL->bindPrama(':price', $newprice);
+
+				$insertSQL->execute();
+
+				echo "Data saved successfully ...";
+				header( "refresh:2; url=procutcDashboard.php");
+			}
 		}
 	}
 ?>
