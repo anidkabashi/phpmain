@@ -2,6 +2,8 @@
 // Include database connection
 include 'db.php';
 
+
+
 // Redirect if no ID
 if (!isset($_GET['id'])) {
     header('Location: index.php');
