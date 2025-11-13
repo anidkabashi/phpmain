@@ -8,19 +8,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE username=?");
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->execute([$username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
-    $_SESSION['user'] = $user['username'];
-    $_SESSION['role'] = $user['role']; // Add this line
-    header("Location: index.php");
-    exit;
-    
+        // Set session
+        $_SESSION['user'] = $user['username'];
+        $_SESSION['role'] = $user['role'];
 
-
-        
+        // Redirect automatically depending on role
+        if ($user['role'] === 'admin') {
+            header("Location: index.php"); // admin dashboard
+        } else {
+            header("Location: shop.php"); // user storefront
+        }
+        exit;
+    } else {
+        $msg = "<div class='alert alert-danger text-center'>⚠️ Invalid username or password.</div>";
     }
 }
 ?>
@@ -29,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Login - Food Store</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -52,7 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 </div>
 
-<!-- Optional: Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

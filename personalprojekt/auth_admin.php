@@ -3,11 +3,11 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Show logged-in user info
+
 $loggedInUser = $_SESSION['user'] ?? 'Guest';
 $role = $_SESSION['role'] ?? 'user';
 
-// If not admin, show styled message and exit
+
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     echo <<<HTML
 <!DOCTYPE html>
